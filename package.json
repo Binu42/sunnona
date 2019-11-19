@@ -1,0 +1,19 @@
+{
+  "name": "sunnona",
+  "version": "1.0.0",
+  "description": "music app for dbms",
+  "main": "app.js",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "knex": "^0.20.2",
+    "mysql": "^2.17.1",
+    "spotify-web-api-node": "^4.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "binu",
+  "license": "ISC"
+}

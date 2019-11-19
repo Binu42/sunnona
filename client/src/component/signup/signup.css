@@ -1,0 +1,9 @@
+#bg-register{
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('../../assests/image/register.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+#register, .register{
+  min-height: 100vh;
+}
