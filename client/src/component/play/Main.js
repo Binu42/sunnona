@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ShowPlaylists from '../MusicSelect/ShowPlaylists'
 import ShowAlbums from '../MusicSelect/ShowAlbums'
+import axios from 'axios'
 import './styles.css'
 
 export default class Main extends Component {
@@ -15,9 +16,15 @@ export default class Main extends Component {
   }
 
   componentDidMount() {
-    fetch('media.js')
-      .then(res => res.json())
-      .then(media => this.setState({ media }))
+    // fetch('media.js')
+    //   .then(res => res.json())
+    //   .then(media => this.setState({ media }));
+    axios.get('http://localhost:4000/albums')
+    .then(album => {
+      console.log(album.data)
+      this.setState({media: album.data});
+    })
+    console.log(this.state.media);
   }
 
   render() {
@@ -44,8 +51,8 @@ export default class Main extends Component {
           <span className="h3">Sunnona Version 1.0.0
             <select value={this.props.theme} className="ml-4 form-control-sm" onChange={(ev) => this.props.handleThemeChange(ev)}>
               <option value="spotify">Spotify</option>
-              {/* <option value="soundcloud">soundcloud</option> */}
-              <option value="youtube">youtube</option>
+          {/* <option value="soundcloud">soundcloud</option> */}
+          <option value="youtube">youtube</option>
             </select>
           </span>
         </div>

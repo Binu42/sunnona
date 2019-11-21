@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import ReactMediaVisualizer from 'react-media-visualizer'
 import Main from './Main'
 export default class App extends Component {
@@ -9,7 +8,7 @@ export default class App extends Component {
       playlist: null,
       playlistIsPlaying: false,
       currentSongIndex: 0,
-      theme: 'youtube'
+      theme: 'spotify'
     }
     this.updatePlaylist = this.updatePlaylist.bind(this)
     this.receiveStateUpdates = this.receiveStateUpdates.bind(this)
