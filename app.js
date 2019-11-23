@@ -108,7 +108,8 @@ app.post('/login', (req, res) => {
 })
 
 app.get('/albums', (req, res) => {
-  let sql = "select a.name as albumName, a.id, a.image as albumImage, t.name as trackName, t.audioLink as audio from album a, track t where a.id=t.albumId";
+  // let sql = "select a.name as albumName, a.id, a.image as albumImage, t.name as trackName, t.audioLink as audio from album a, track t where a.id=t.albumId";
+  let sql = "select a.name as artistName, A.id, A.image as albumImage, t.name as trackName, A.name as albumName, t.audioLink as audio from artist a, track t, album A, sings s where a.name=s.artistName and s.albumId=t.albumId and s.trackId=t.id and t.albumId=A.id;"
   db.query(sql, (error, results) => {
     if (error) throw new Error(error);
 
@@ -126,7 +127,8 @@ app.get('/albums', (req, res) => {
           if (result.id === result1.id) {
             const song = {
               name: result1.trackName,
-              src: result1.audio
+              src: result1.audio,
+              artistName: result1.artistName
             }
             album.songs.push(song);
           }
@@ -136,6 +138,7 @@ app.get('/albums', (req, res) => {
           for (result of albumResult) {
             if (result.albumName === album.albumName) {
               count++;
+              break;
             }
           }
           if (count===0) {
@@ -148,6 +151,47 @@ app.get('/albums', (req, res) => {
       }
       res.send(albumResult);
     }
+  })
+})
+
+app.get('/artists', (req, res)=> {
+  let sql="select a.name as artistName, a.image as artistImage, t.name as trackName, t.audioLink as audio from artist a, track t, sings s where a.name=s.artistName and s.trackid=t.id and s.albumId=t.albumId";
+  db.query(sql, (error, results)=> {
+    if(error) throw new Error(error);
+
+    // res.send(result);
+    const artistsResult = [];
+    for(result of results){
+      const artist = {
+        albumName: result.artistName,
+        albumArtwork: result.artistImage,
+        songs: []
+      }
+      for(artist1 of results){
+        if(artist1.artistName === artist.albumName){
+          const song = {
+            name: artist1.trackName,
+            src: artist1.audio
+          }
+          artist.songs.push(song);
+        }
+      }
+      if(artistsResult.length !==0){
+        var count = 0;
+        for(result of artistsResult){
+          if(artist.albumName === result.albumName){
+            count++;
+            break;
+          }
+        }
+        if(!count){
+          artistsResult.push(artist)
+        }
+      }else{
+        artistsResult.push(artist);
+      }
+    }
+    res.send(artistsResult)
   })
 })
 

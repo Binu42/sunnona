@@ -65,7 +65,8 @@ main .albums .grid {
 
 
 main .album {
-  height: 100%; 
+  height: 100%;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
 }
@@ -121,8 +122,8 @@ main .album {
 }
 
 .album img {
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  /* height: 200px; */
 }
 
 main .albums .grid img {
@@ -133,13 +134,14 @@ main .albums .grid img {
 
 .playlist-square {
   position: relative;
+  height: 170px;
 }
 
 .playlist-square .play-button {
   position: relative;
   bottom: 100px;
   left: 10px;
-  background: ghostwhite;
+  background: rgb(24, 24, 24);
   height: 30px;
   width: 30px;
   z-index: 5;
@@ -149,7 +151,7 @@ main .albums .grid img {
   justify-content: center;
   align-items: center;
   /* padding-left: 3px; */
-  color: black;
+  color: rgb(58, 242, 255);
 }
 
 .sidenav---sidenav---_2tBP{

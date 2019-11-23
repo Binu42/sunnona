@@ -4,7 +4,7 @@ const ShowAlbums = (props) => {
   const pointerStyles = { cursor: 'pointer' }
 
   return (
-    <React.Fragment>
+    <div>
       <h2 className="text-center">Albums</h2>
       <hr></hr>
       <div className="grid">{props.media.map((playlist, index) => (
@@ -18,7 +18,7 @@ const ShowAlbums = (props) => {
           </div>
         </div>))}
       </div>
-    </React.Fragment>
+    </div>
   )
 }
 

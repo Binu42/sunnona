@@ -1,48 +1,35 @@
 import React, { Component } from 'react'
 import ShowPlaylists from '../MusicSelect/ShowPlaylists'
 import ShowAlbums from '../MusicSelect/ShowAlbums'
-import axios from 'axios'
-import './styles.css'
+import Navbar from '../layout/Navbar'
+import Axios from 'axios';
 
-export default class Main extends Component {
+class Artist extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      media: [],
-      selectedAlbum: null
+      artists: [],
+      selectedArtist: null
     }
     this.selectAlbum = this.selectAlbum.bind(this)
     this.clearSelectedAlbum = this.clearSelectedAlbum.bind(this)
   }
 
-  componentDidMount() {
-    axios.get('http://localhost:4000/albums')
-      .then(album => {
-        this.setState({ media: album.data });
-      })
+  componentDidMount(){
+    Axios.get("http://localhost:4000/artists")
+    .then(artists => {
+      this.setState({ artists: artists.data });
+      // console.log(this.state.artists)
+    })
   }
 
   render() {
     return (
       <main>
+      <Navbar/>
         <div className="albums">
-          {/* {!this.state.selectedAlbum
-            ? <ShowPlaylists
-              clearSelectedAlbum={this.clearSelectedAlbum}
-              selectedAlbum={this.state.selectedAlbum}
-              playlist={this.props.playlist}
-              updatePlaylist={this.props.updatePlaylist}
-              playlistIsPlaying={this.props.playlistIsPlaying}
-              currentSongIndex={this.props.currentSongIndex} />
-            : <ShowAlbums
-              media={this.state.media}
-              selectAlbum={this.selectAlbum}
-              updatePlaylist={this.props.updatePlaylist}
-              currentSongIndex={this.props.currentSongIndex}
-              playlist={this.props.playlist}
-              playlistIsPlaying={this.props.playlistIsPlaying} />} */}
           <ShowAlbums
-            media={this.state.media}
+            media={this.state.artists}
             selectAlbum={this.selectAlbum}
             updatePlaylist={this.props.updatePlaylist}
             currentSongIndex={this.props.currentSongIndex}
@@ -67,7 +54,6 @@ export default class Main extends Component {
       </main>
     )
   }
-
   selectAlbum(selectedAlbum) {
     this.setState({ selectedAlbum })
   }
@@ -76,3 +62,5 @@ export default class Main extends Component {
     this.setState({ selectedAlbum: null })
   }
 }
+
+export default Artist;
