@@ -27,7 +27,6 @@ app.use(express.json({}))
 app.use(cors());
 
 app.post('/register', (req, res) => {
-  // console.log(req.body);
   const { email, password } = req.body;
   console.log(email, password)
   bcrypt.genSalt(5, (error, salt) => {
@@ -115,7 +114,6 @@ app.get('/albums', (req, res) => {
 
     const albumDetails = []
     if (results) {
-      // res.send(results)
       const albumResult = []
       for (result of results) {
         const album = {
