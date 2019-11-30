@@ -40,7 +40,7 @@ class Signup extends Component {
           <strong>Password Doesn't Match !!</strong>
         </div>
       )
-    }else if (this.state.passwordLength) {
+    } else if (this.state.passwordLength) {
       return (
         <div className="alert alert-dark text-center">
           <strong>Password Length must be 5 Atleast!!</strong>
@@ -57,13 +57,13 @@ class Signup extends Component {
     // console.log(email, password, confPassword)
     if (this.state.password !== this.state.confPassword) {
       this.setState({ passwordNotMatch: true });
-      this.setState({password: "", confPassword: ""})
+      this.setState({ password: "", confPassword: "" })
       setTimeout(() => {
         this.setState({ passwordNotMatch: false })
       }, 2500)
-    }if (this.state.password.length < 5) {
+    } if (this.state.password.length < 5) {
       this.setState({ passwordLength: true });
-      this.setState({password: "", confPassword: ""})
+      this.setState({ password: "", confPassword: "" })
       setTimeout(() => {
         this.setState({ passwordLength: false })
       }, 2500)
@@ -72,8 +72,9 @@ class Signup extends Component {
         .then(user => {
           this.setState({ email: "", password: "", confPassword: "" })
           if (user) {
-            if (user.data.token) {
-              localStorage.setItem('token', user.data.token);
+            if (user.data.user.token && user.data.user.name) {
+              localStorage.setItem('token', user.data.user.token);
+              localStorage.setItem('userName', user.data.user.name)
               this.setState({ 'loggedIn': true })
             } else {
               this.setState({ userNotFound: true })

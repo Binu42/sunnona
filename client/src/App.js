@@ -1,9 +1,11 @@
 import React, { Component, Fragment } from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
-import Home from './component/layout/Landing'
+import Album from './component/layout/Landing'
 import Signup from './component/signup/Signup'
 import Login from './component/login/Login'
 import Artist from './component/play/ArtistList'
+import Mixed from './component/play/MixedList'
+import Genre from './component/play/GenreList'
 import './App.css';
 
 class App extends Component {
@@ -26,7 +28,7 @@ class App extends Component {
         <Route
           path="/favourites"
           exact
-          render={() => <Home />}
+          render={() => <Album />}
         />
       );
     } else {
@@ -44,12 +46,22 @@ class App extends Component {
             <Route
               path="/"
               exact
-              render={() => <Home />}
+              render={() => <Mixed />}
             />
             <Route
               path="/artist"
               exact
               render={() => <Artist />}
+            />
+            <Route
+              path="/genre"
+              exact
+              render={() => <Genre />}
+            />
+            <Route
+              path="/album"
+              exact
+              render={() => <Album />}
             />
             {routes}
             <Redirect to="/" />

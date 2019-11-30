@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactMediaVisualizer from 'react-media-visualizer'
-import Main from './Main'
+import Genre from "./Genre"
 export default class App extends Component {
   constructor(props) {
     super(props)
@@ -19,7 +19,7 @@ export default class App extends Component {
     return (
       <React.Fragment>
         <div className="react-media-vis-body">
-          <Main
+          <Genre
             updatePlaylist={this.updatePlaylist}
             currentSongIndex={this.state.currentSongIndex}
             playlist={this.state.playlist}

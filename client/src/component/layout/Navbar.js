@@ -42,14 +42,15 @@ class Navbar extends Component {
       </NavItem>)
     }
     else {
-      route1 = (<NavItem eventKey="logout">
-        <NavIcon>
-          <i className="fa fa-sign-out-alt" aria-hidden="true"></i>
-        </NavIcon>
-        <NavText>
-          Logout
-        </NavText>
-      </NavItem>)
+      route1 = (
+        <NavItem eventKey="logout">
+          <NavIcon>
+            <i className="fa fa-sign-out-alt" aria-hidden="true"></i>
+          </NavIcon>
+          <NavText>
+            Logout
+          </NavText>
+        </NavItem>)
       routes = (
         <NavItem eventKey="favourites">
           <NavIcon>
@@ -57,7 +58,7 @@ class Navbar extends Component {
           </NavIcon>
           <NavText>
             Favourites
-              </NavText>
+          </NavText>
         </NavItem>
       )
     }
@@ -113,9 +114,18 @@ class Navbar extends Component {
                   Play Music
               </NavText>
               </NavItem>
+              <NavItem eventKey="genre">
+                <NavIcon>
+                  <i className="im im-pulse"></i>
+                </NavIcon>
+                <NavText>
+                  Genre
+              </NavText>
+              </NavItem>
               <NavItem eventKey="artist">
                 <NavIcon>
-                  <i className="im im-spotify text-success"></i>
+                  {/* <i className="im im-spotify text-success"></i> */}
+                  <i className="fas fa-music"></i>
                 </NavIcon>
                 <NavText>
                   Artists

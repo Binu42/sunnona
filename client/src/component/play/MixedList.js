@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactMediaVisualizer from 'react-media-visualizer'
-import Main from './Main'
+import Main from './Mixed'
 export default class App extends Component {
   constructor(props) {
     super(props)

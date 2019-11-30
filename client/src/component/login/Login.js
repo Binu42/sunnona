@@ -48,13 +48,14 @@ class Login extends Component {
         this.setState({ email: "", "password": "" })
         console.log(user)
         if (user) {
-          if (user.data.token) {
-            localStorage.setItem('token', user.data.token);
+          if (user.data.user.token && user.data.user.name) {
+            localStorage.setItem('token', user.data.user.token);
+            localStorage.setItem('userName', user.data.user.name)
             this.setState({ 'loggedIn': true });
           } else {
-            this.setState({ check: true});
-            setTimeout(()=> {
-              this.setState({check: false})
+            this.setState({ check: true });
+            setTimeout(() => {
+              this.setState({ check: false })
             }, 2500)
           }
         }

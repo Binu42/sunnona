@@ -1,12 +1,12 @@
-import React, {Fragment} from 'react'
+import React, { Fragment } from 'react'
 import Navbar from './Navbar'
-import Body from './Body'
+import Play from '../play/Playlist'
 
 function Landing() {
   return (
     <Fragment>
-      <Navbar/>
-      <Body/>
+      <Navbar />
+      <Play />
     </Fragment>
   )
 }

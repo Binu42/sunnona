@@ -15,18 +15,18 @@ class Artist extends Component {
     this.clearSelectedAlbum = this.clearSelectedAlbum.bind(this)
   }
 
-  componentDidMount(){
+  componentDidMount() {
     Axios.get("http://localhost:4000/artists")
-    .then(artists => {
-      this.setState({ artists: artists.data });
-      // console.log(this.state.artists)
-    })
+      .then(artists => {
+        this.setState({ artists: artists.data });
+        // console.log(this.state.artists)
+      })
   }
 
   render() {
     return (
       <main>
-      <Navbar/>
+        <Navbar />
         <div className="albums">
           <ShowAlbums
             media={this.state.artists}

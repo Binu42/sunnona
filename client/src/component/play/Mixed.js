@@ -1,50 +1,47 @@
 import React, { Component } from 'react'
 import ShowPlaylists from '../MusicSelect/ShowPlaylists'
-import ShowAlbums from '../MusicSelect/ShowAlbums'
-import axios from 'axios'
-import './styles.css'
+import ShowAlbums from '../MusicSelect/Show'
+import Navbar from '../layout/Navbar'
+import Axios from 'axios';
+import Show from '../MusicSelect/Show';
 
-export default class Main extends Component {
+class Mixed extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      media: [],
-      selectedAlbum: null
+      genres: [],
+      albums: [],
+      artists: [],
+      selectedArtist: null
     }
     this.selectAlbum = this.selectAlbum.bind(this)
     this.clearSelectedAlbum = this.clearSelectedAlbum.bind(this)
   }
 
   componentDidMount() {
-    axios.get('http://localhost:4000/albums')
-      .then(album => {
-        this.setState({ media: album.data });
-        console.log(album)
+    Axios.get("http://localhost:4000/genres")
+      .then(genres => {
+        this.setState({ genres: genres.data });
       })
-    console.log(this.state.media)
+    Axios.get("http://localhost:4000/artists")
+      .then(artists => {
+        this.setState({ artists: artists.data });
+      })
+    Axios.get("http://localhost:4000/albums")
+      .then(albums => {
+        this.setState({ albums: albums.data });
+      })
   }
 
   render() {
     return (
       <main>
+        <Navbar />
         <div className="albums">
-          {/* {!this.state.selectedAlbum
-            ? <ShowPlaylists
-              clearSelectedAlbum={this.clearSelectedAlbum}
-              selectedAlbum={this.state.selectedAlbum}
-              playlist={this.props.playlist}
-              updatePlaylist={this.props.updatePlaylist}
-              playlistIsPlaying={this.props.playlistIsPlaying}
-              currentSongIndex={this.props.currentSongIndex} />
-            : <ShowAlbums
-              media={this.state.media}
-              selectAlbum={this.selectAlbum}
-              updatePlaylist={this.props.updatePlaylist}
-              currentSongIndex={this.props.currentSongIndex}
-              playlist={this.props.playlist}
-              playlistIsPlaying={this.props.playlistIsPlaying} />} */}
-          <ShowAlbums
-            media={this.state.media}
+          <Show
+            genre={this.state.genres}
+            album={this.state.albums}
+            artist={this.state.artists}
             selectAlbum={this.selectAlbum}
             updatePlaylist={this.props.updatePlaylist}
             currentSongIndex={this.props.currentSongIndex}
@@ -69,7 +66,6 @@ export default class Main extends Component {
       </main>
     )
   }
-
   selectAlbum(selectedAlbum) {
     this.setState({ selectedAlbum })
   }
@@ -78,3 +74,5 @@ export default class Main extends Component {
     this.setState({ selectedAlbum: null })
   }
 }
+
+export default Mixed;

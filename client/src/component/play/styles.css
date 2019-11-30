@@ -10,9 +10,9 @@ main {
 
 main .albums {
   margin-left: 65px;
-  padding: 0 50px;
+  padding: 0 50px 0 20px;
   box-sizing: border-box;
-  width: 50%;
+  width: 60%;
   height: 100%;
   overflow: scroll;
   background: #4a4a4b66;
@@ -30,25 +30,26 @@ main .album-all {
   border-right: 1px solid #323e4f;
 }
 
-.index_av__background__7AU54, .index_progress__container__2BmSn{
+.index_av__background__7AU54,
+.index_progress__container__2BmSn {
   margin-left: 65px;
   width: calc(100% - 65px);
 }
 
-.index_progress__container__2BmSn{
+.index_progress__container__2BmSn {
   margin: 0;
 }
 
-.index_meta__tags__artist__3n97U{
+.index_meta__tags__artist__3n97U {
   width: 200px;
 }
 
-.index_av__background__3hOvd .index_av__container__1nzKQ{
+.index_av__background__3hOvd .index_av__container__1nzKQ {
   z-index: 1200;
 }
 
-.details{
-  width: 50%;
+.details {
+  width: 40%;
 }
 
 main h2 {
@@ -60,9 +61,8 @@ main .albums .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, 150px);
   grid-template-rows: repeat(auto-fill, 150px);
-  grid-gap: 50px;
+  grid-gap: 40px;
 }
-
 
 main .album {
   height: 100%;
@@ -106,8 +106,8 @@ main .album {
   display: flex;
 }
 
-.playlist-song i  {
-  height: 40px;  
+.playlist-song i {
+  height: 40px;
   width: 40px;
   display: flex;
   justify-content: flex-start;
@@ -154,10 +154,10 @@ main .albums .grid img {
   color: rgb(58, 242, 255);
 }
 
-.sidenav---sidenav---_2tBP{
+.sidenav---sidenav---_2tBP {
   background: #17223b;
 }
 
-.white_col{
+.white_col {
   fill: #fff;
 }
