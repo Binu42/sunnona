@@ -48,7 +48,7 @@ class Login extends Component {
         this.setState({ email: "", "password": "" })
         console.log(user)
         if (user) {
-          if (user.data.user.token && user.data.user.name) {
+          if (user.data.user) {
             localStorage.setItem('token', user.data.user.token);
             localStorage.setItem('userName', user.data.user.name)
             this.setState({ 'loggedIn': true });

@@ -13,13 +13,7 @@ class Signup extends Component {
       loggedIn = true
     }
     this.state = {
-      email: "",
-      password: "",
-      confPassword: "",
-      loggedIn,
-      userNotFound: false,
-      passwordNotMatch: false,
-      passwordLength: false,
+      loggedIn
     }
   }
 
@@ -27,64 +21,9 @@ class Signup extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  alertCheck = () => {
-    if (this.state.userNotFound) {
-      return (
-        <div className="alert alert-danger text-center">
-          <strong>User with Same Email</strong> Already Exist!
-        </div>
-      )
-    } else if (this.state.passwordNotMatch) {
-      return (
-        <div className="alert alert-warning text-center">
-          <strong>Password Doesn't Match !!</strong>
-        </div>
-      )
-    } else if (this.state.passwordLength) {
-      return (
-        <div className="alert alert-dark text-center">
-          <strong>Password Length must be 5 Atleast!!</strong>
-        </div>
-      )
-    } else {
-      return "";
-    }
-
-  }
-
   submitForm = (event) => {
     event.preventDefault();
-    // console.log(email, password, confPassword)
-    if (this.state.password !== this.state.confPassword) {
-      this.setState({ passwordNotMatch: true });
-      this.setState({ password: "", confPassword: "" })
-      setTimeout(() => {
-        this.setState({ passwordNotMatch: false })
-      }, 2500)
-    } if (this.state.password.length < 5) {
-      this.setState({ passwordLength: true });
-      this.setState({ password: "", confPassword: "" })
-      setTimeout(() => {
-        this.setState({ passwordLength: false })
-      }, 2500)
-    } else {
-      axios.post('http://localhost:4000/register', { email: this.state.email, password: this.state.password })
-        .then(user => {
-          this.setState({ email: "", password: "", confPassword: "" })
-          if (user) {
-            if (user.data.user) {
-              localStorage.setItem('token', user.data.user.token);
-              localStorage.setItem('userName', user.data.user.name)
-              this.setState({ 'loggedIn': true })
-            } else {
-              this.setState({ userNotFound: true })
-              setTimeout(() => {
-                this.setState({ userNotFound: false })
-              }, 2500)
-            }
-          }
-        })
-    }
+
   }
   render() {
     if (this.state.loggedIn) {
@@ -94,15 +33,15 @@ class Signup extends Component {
       return (
         <div>
           <Navbar />
-          <div className="row no-gutters" id="register">
-            <div className="col-md-7" id="bg-register">
+          <div className="row no-gutters" id="admin">
+            <div className="col-md-7" id="bg-admin">
             </div>
             <div className="col-md-5 bg-light">
-              <div className="register d-flex align-items-center">
+              <div className="admin d-flex align-items-center">
                 <div className="container p-4 text-dark">
                   {this.alertCheck()}
                   <div className="text-center">
-                    <h2 className="font-weight-bold">Register</h2>
+                    <h2 className="font-weight-bold">Add Song</h2>
                   </div>
                   <hr />
                   <form onSubmit={this.submitForm}>
@@ -136,3 +75,4 @@ class Signup extends Component {
 }
 
 export default Signup
+

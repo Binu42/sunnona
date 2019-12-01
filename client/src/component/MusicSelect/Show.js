@@ -6,7 +6,7 @@ const Show = (props) => {
   return (
     <div>
       <div>
-        <h1 className="text-success text-center" style={{ "font-family": 'Rye, cursive', "font-size": "55px" }}>Sunnona</h1>
+        <h1 className="text-success text-center" style={{ "fontFamily": 'Rye, cursive', "fontSize": "55px" }}>Sunnona</h1>
       </div>
       <div className="p-2">
         <h2 className="text-center">Albums</h2>

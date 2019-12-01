@@ -6,7 +6,8 @@ import Login from './component/login/Login'
 import Artist from './component/play/ArtistList'
 import Mixed from './component/play/MixedList'
 import Genre from './component/play/GenreList'
-import Favourites from './component/play/FavouriteList'
+import Favourite from './component/play/FavouriteList'
+import TopSong from './component/play/TopSongList'
 import './App.css';
 
 class App extends Component {
@@ -16,30 +17,47 @@ class App extends Component {
     const token = localStorage.getItem('token');
     if (token) {
       loggedIn = true
+    } else {
+      console.log('no token')
     }
     this.state = {
       loggedIn
     };
   }
 
-  render() {
-    let routes;
+  componentDidMount() {
+    console.log('updating')
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.setState({ loggedIn: true })
+    } else {
+      console.log('no token')
+      this.setState({ loggedIn: false })
+    }
+  }
+
+  routes() {
     if (this.state.loggedIn) {
-      routes = (
-        <Route
-          path="/favourites"
-          exact
-          render={() => <Favourites />}
-        />
+      return (
+        <Fragment>
+          <Route
+            path="/favourites" exact
+            render={() => <Favourite />}
+          />
+        </Fragment>
       );
     } else {
-      routes = (
+      return (
         <Fragment>
           <Route exact path="/register" render={() => <Signup />} />
           <Route exact path="/login" render={() => <Login />} />
         </Fragment>
       );
     }
+  }
+
+  render() {
+
     return (
       <Fragment>
         <Router>
@@ -60,11 +78,30 @@ class App extends Component {
               render={() => <Genre />}
             />
             <Route
+              path="/music"
+              exact
+              render={() => <TopSong />}
+            />
+            <Route
               path="/album"
               exact
               render={() => <Album />}
             />
-            {routes}
+            {/* {this.routes()} */}
+            {
+              this.state.loggedIn ?
+                <Fragment>
+                  <Route
+                    path="/favourites" exact
+                    render={() => <Favourite />}
+                  />
+                </Fragment>
+                :
+                <Fragment>
+                  <Route exact path="/register" render={() => <Signup />} />
+                  <Route exact path="/login" render={() => <Login />} />
+                </Fragment>
+            }
             <Redirect to="/" />
           </Switch>
         </Router>

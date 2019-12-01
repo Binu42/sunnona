@@ -3,19 +3,19 @@ import ShowPlaylists from './FavPlay'
 import Navbar from '../layout/Navbar'
 import Axios from 'axios';
 
-class Artist extends Component {
+class Favourite extends Component {
   constructor(props) {
     super(props);
+    let loggedInUser = localStorage.getItem('userName')
     this.state = {
       favourite: [],
-      selectedAlbum: null
+      loggedInUser
     }
-    this.selectAlbum = this.selectAlbum.bind(this)
-    this.clearSelectedAlbum = this.clearSelectedAlbum.bind(this)
   }
 
   componentDidMount() {
-    Axios.get("http://localhost:4000/get/favourites")
+    const loggedInUser = this.state.loggedInUser;
+    Axios.post("http://localhost:4000/get/favourites", { loggedInUser })
       .then(favourite => {
         this.setState({ favourite: favourite.data });
         // console.log(this.state.artists)
@@ -26,7 +26,7 @@ class Artist extends Component {
     return (
       <main>
         <Navbar />
-        <div className="container text-center p-2">
+        <div id="song-list">
           <ShowPlaylists
             songs={this.state.favourite}
             playlist={this.props.playlist}
@@ -38,13 +38,6 @@ class Artist extends Component {
       </main>
     )
   }
-  selectAlbum(selectedAlbum) {
-    this.setState({ selectedAlbum })
-  }
-
-  clearSelectedAlbum() {
-    this.setState({ selectedAlbum: null })
-  }
 }
 
-export default Artist;
+export default Favourite;

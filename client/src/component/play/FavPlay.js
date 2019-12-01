@@ -1,16 +1,15 @@
 import React from 'react'
-import Axios from 'axios';
 
 const ShowPlaylists = (props) => {
   const pointerStyles = { cursor: 'pointer' }
   console.log(props)
   return (
     <React.Fragment>
-      <div className="ml-4">
-        <div className="row mt-2 mx-4">
+      <div className="px-4">
+        <div className="row mt-2 mx-5">
           <div className="col-md-12">
             <div>
-              <h1 className="text-success text-center" style={{ "font-family": 'Rye, cursive', "font-size": "50px" }}>Sunnona</h1>
+              <h1 className="text-success text-center" style={{ "fontFamily": 'Rye, cursive', "fontSize": "50px" }}>Sunnona</h1>
             </div>
             <h3 className="text-center">Your Favourites Songs</h3>
             {props.songs.map((song, index) => (

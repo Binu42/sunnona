@@ -248,15 +248,23 @@ app.post('/add/favourite', (req, res) => {
   let data = { name: req.body.userId, trackId: req.body.trackId, albumId: req.body.albumId };
   let sql = `insert into favourites set ?`;
   db.query(sql, data, (error, result) => {
-    if (error) throw new Error(error);
+    if (error) {
+      let sql1 = "delete from favourites where name=" + mysql.escape(data.name) + " and trackId=" + mysql.escape(data.trackId) + " and albumId=" + mysql.escape(data.albumId);
+      db.query(sql1, (error, result1) => {
+        if (error) throw new Error(error);
+
+        // return (res.send(result1))
+      })
+    };
 
     res.send(result);
   })
 })
 
 
-app.get('/get/favourites', (req, res) => {
-  let sql = "select a.name as artistName, t.name as trackName, t.audioLink as audioLink from favourites f, track t, artist a, sings s where f.trackId=t.id and f.albumId=t.albumId and s.trackId=t.id and s.albumId=t.albumId and a.name=s.artistName"
+app.post('/get/favourites', (req, res) => {
+  console.log(req.body)
+  let sql = "select a.name as artistName, t.name as trackName, t.audioLink as audioLink from favourites f, track t, artist a, sings s where f.trackId=t.id and f.albumId=t.albumId and s.trackId=t.id and s.albumId=t.albumId and a.name=s.artistName and f.name=" + mysql.escape(req.body.loggedInUser);
   db.query(sql, (error, results) => {
     if (error) throw new Error(error)
 
@@ -271,6 +279,46 @@ app.get('/get/favourites', (req, res) => {
     }
     res.send(songs);
   })
+})
+
+app.post('/incCount', (req, res) => {
+  // console.log(req.body);
+  const data = { trackId: req.body.trackId, albumId: req.body.albumId };
+  let sql = "update track set count=count+1 where id=" + mysql.escape(data.trackId) + " and albumId=" + mysql.escape(data.albumId);
+  db.query(sql, (err, result) => {
+    if (err) throw new Error(err);
+
+    res.send(result);
+  })
+})
+
+app.get('/songs/sorted', (req, res) => {
+  let sql = "select t.name as trackName, t.audioLink as audioLink, a.name as artistName from track t, artist a, sings s where t.id=s.trackId and t.albumId=s.albumId and a.name=s.artistName order by t.count desc"
+  db.query(sql, (error, results) => {
+    if (error) throw new Error(error);
+
+    // res.send(result);
+    let songs = [];
+    for (result1 of results) {
+      const details = {
+        name: result1.trackName,
+        src: result1.audioLink,
+        artistName: result1.artistName
+      }
+      songs.push(details)
+    }
+    res.send(songs);
+  })
+})
+
+app.get('/logout', (req, res) => {
+  if (req.user) {
+    req.logout();
+    console.log('logged out');
+    res.send({ msg: 'logging out' })
+  } else {
+    res.send({ msg: 'no user to log out' })
+  }
 })
 
 app.listen('4000', () => {

@@ -3,6 +3,7 @@ import { Component } from 'react'
 import { Route } from 'react-router-dom'
 import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
+import Axios from 'axios'
 // Toggle, Nav, 
 
 import React from 'react'
@@ -70,7 +71,13 @@ class Navbar extends Component {
               const to = '/' + selected;
               if (selected === "logout") {
                 localStorage.removeItem('token');
+                localStorage.removeItem('userName');
                 this.setState({ loggedIn: false });
+                Axios.get('http://localhost:4000/logout')
+                  .then(user => {
+                    if (user)
+                      history.push('/')
+                  })
               } else {
                 if (location.pathname !== to) {
                   history.push(to);
@@ -111,7 +118,7 @@ class Navbar extends Component {
                   <i className="im im-headphones"></i>
                 </NavIcon>
                 <NavText>
-                  Play Music
+                  Top Music
               </NavText>
               </NavItem>
               <NavItem eventKey="genre">

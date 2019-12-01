@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactMediaVisualizer from 'react-media-visualizer'
-import Favourite from "./Favourite"
+import TopSong from "./TopSong"
 
 export default class App extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ export default class App extends Component {
     return (
       <React.Fragment>
         <div className="react-media-vis-body">
-          <Favourite
+          <TopSong
             updatePlaylist={this.updatePlaylist}
             currentSongIndex={this.state.currentSongIndex}
             playlist={this.state.playlist}

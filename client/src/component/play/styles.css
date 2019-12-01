@@ -4,6 +4,7 @@
 
 main {
   height: 100%;
+  width: 100%;
   flex-grow: 1;
   display: flex;
 }
@@ -28,6 +29,34 @@ main .album-all {
   overflow: scroll;
   background: #4a4a4b66;
   border-right: 1px solid #323e4f;
+}
+
+#playlist-songs {
+  max-height: 88%;
+  overflow: scroll;
+  box-sizing: border-box;
+}
+
+.text-custom {
+  color: #fff;
+}
+
+#songs-list {
+  margin-left: 65px;
+  width: calc(100% - 65px);
+  background: linear-gradient(rgba(88, 88, 88, 0.5), rgba(0, 0, 0, 0.418)),
+    url('../../assests/image/music-159865.svg');
+  background-position: 50%;
+  background-size: cover;
+}
+
+#song-list {
+  margin-left: 65px;
+  width: calc(100% - 65px);
+  background: linear-gradient(rgba(88, 88, 88, 0.5), rgba(42, 42, 42, 0.5)),
+    url('../../assests/image/music-4052897.svg');
+  background-position: 50%;
+  background-size: cover;
 }
 
 .index_av__background__7AU54,
