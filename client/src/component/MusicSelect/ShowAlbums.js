@@ -5,6 +5,9 @@ const ShowAlbums = (props) => {
 
   return (
     <div>
+      <div>
+        <h1 className="text-success text-center" style={{ "font-family": 'Rye, cursive', "font-size": "55px" }}>Sunnona</h1>
+      </div>
       <h2 className="text-center">Albums</h2>
       <hr></hr>
       <div className="grid">{props.media.map((playlist, index) => (

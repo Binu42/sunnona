@@ -21,8 +21,13 @@ const ShowPlaylists = (props) => {
       <div className="album">
         <span style={pointerStyles} onClick={props.clearSelectedAlbum}>‹ Back to Soundtracks</span>
         <div className="album-meta mt-2">
-          <img src={props.selectedAlbum.albumArtwork} alt={props.selectedAlbum.albumName} className="img-fluid rounded" />
-          <span>{props.selectedAlbum.albumName}</span>
+          {props.selectedAlbum ?
+            <span className="d-flex justify-content-center align-items-center flex-column">
+              <img src={props.selectedAlbum.albumArtwork} alt={props.selectedAlbum.albumName} className="img-fluid rounded" />
+              <br></br>
+              <span>{props.selectedAlbum.albumName}</span>
+            </span>
+            : ""}
           {/* <span>{props.selectedAlbum.albumArtist}</span> */}
         </div>
         <div className="album-playlist mt-4 mx-4">

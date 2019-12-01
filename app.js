@@ -254,6 +254,25 @@ app.post('/add/favourite', (req, res) => {
   })
 })
 
+
+app.get('/get/favourites', (req, res) => {
+  let sql = "select a.name as artistName, t.name as trackName, t.audioLink as audioLink from favourites f, track t, artist a, sings s where f.trackId=t.id and f.albumId=t.albumId and s.trackId=t.id and s.albumId=t.albumId and a.name=s.artistName"
+  db.query(sql, (error, results) => {
+    if (error) throw new Error(error)
+
+    let songs = [];
+    for (result1 of results) {
+      const details = {
+        name: result1.trackName,
+        src: result1.audioLink,
+        artistName: result1.artistName
+      }
+      songs.push(details)
+    }
+    res.send(songs);
+  })
+})
+
 app.listen('4000', () => {
   console.log('server is running at 4000');
 })

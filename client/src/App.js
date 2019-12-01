@@ -6,6 +6,7 @@ import Login from './component/login/Login'
 import Artist from './component/play/ArtistList'
 import Mixed from './component/play/MixedList'
 import Genre from './component/play/GenreList'
+import Favourites from './component/play/FavouriteList'
 import './App.css';
 
 class App extends Component {
@@ -28,7 +29,7 @@ class App extends Component {
         <Route
           path="/favourites"
           exact
-          render={() => <Album />}
+          render={() => <Favourites />}
         />
       );
     } else {
