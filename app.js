@@ -311,6 +311,24 @@ app.get('/songs/sorted', (req, res) => {
   })
 })
 
+app.get('/lang/:lang', (req, res) => {
+  let sql = "select t.name as trackName, t.audioLink as audioLink, a.name as artistName from track t, artist a, sings s where t.id=s.trackId and t.albumId=s.albumId and a.name=s.artistName and lang=" + mysql.escape(req.params.lang);
+  db.query(sql, (err, results) => {
+    if (err) throw new Error(err);
+
+    let songs = [];
+    for (result1 of results) {
+      const details = {
+        name: result1.trackName,
+        src: result1.audioLink,
+        artistName: result1.artistName
+      }
+      songs.push(details)
+    }
+    res.send(songs);
+  })
+})
+
 app.get('/logout', (req, res) => {
   if (req.user) {
     req.logout();

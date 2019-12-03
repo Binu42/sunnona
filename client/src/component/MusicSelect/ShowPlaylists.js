@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Axios from 'axios';
 
 const ShowPlaylists = (props) => {
@@ -9,8 +9,6 @@ const ShowPlaylists = (props) => {
   if (token) {
     loggedIn = true;
   }
-
-  const [search, setSearch] = useState('');
 
   const addFav = (userId, trackId, albumId) => {
     Axios.post('http://localhost:4000/add/favourite', ({ userId, trackId, albumId }))
@@ -44,7 +42,7 @@ const ShowPlaylists = (props) => {
               {(JSON.stringify(props.playlist) === JSON.stringify(props.selectedAlbum.songs.map(song => song.src)) && props.playlistIsPlaying && props.currentSongIndex === index)
                 ? (<i className="fa fa-pause" style={pointerStyles} />)
                 : (<i className="fa fa-play" style={{ paddingLeft: '3px', ...pointerStyles }} />)}
-              {loggedIn ? <a onClick={() => addFav(userName, song.id, props.selectedAlbum.albumId)}><i style={{ "zIndex": "10", cursor: 'pointer' }} className="fas fa-heart text-danger"></i></a> : ""}
+              {loggedIn ? <a href="#1" onClick={() => addFav(userName, song.id, props.selectedAlbum.albumId)}><i style={{ "zIndex": "10", cursor: 'pointer' }} className="fas fa-heart text-danger"></i></a> : ""}
               <span onClick={() => count(song.id, props.selectedAlbum.albumId)} style={pointerStyles}>{song.name}</span>
               <span className="ml-auto">{song.artistName}</span>
             </div>

@@ -61,7 +61,7 @@ class Signup extends Component {
       setTimeout(() => {
         this.setState({ passwordNotMatch: false })
       }, 2500)
-    } if (this.state.password.length < 5) {
+    } else if (this.state.password.length < 5) {
       this.setState({ passwordLength: true });
       this.setState({ password: "", confPassword: "" })
       setTimeout(() => {

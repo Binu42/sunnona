@@ -1,8 +1,8 @@
 import React from 'react'
 
-const ShowPlaylists = (props) => {
+const ShowPlayLanglists = (props) => {
   const pointerStyles = { cursor: 'pointer' }
-  // console.log(props)
+  console.log(props)
   return (
     <React.Fragment>
       <div className="px-5 text-custom" id="playlist">
@@ -26,4 +26,4 @@ const ShowPlaylists = (props) => {
   )
 }
 
-export default ShowPlaylists
+export default ShowPlayLanglists

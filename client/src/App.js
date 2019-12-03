@@ -8,6 +8,8 @@ import Mixed from './component/play/MixedList'
 import Genre from './component/play/GenreList'
 import Favourite from './component/play/FavouriteList'
 import TopSong from './component/play/TopSongList'
+import HindiLangSong from './component/play/HIndiLangSongList'
+import KannadaLangSong from './component/play/KannadaLangSongList'
 import './App.css';
 
 class App extends Component {
@@ -33,6 +35,7 @@ class App extends Component {
     } else {
       console.log('no token')
       this.setState({ loggedIn: false })
+      this.routes();
     }
   }
 
@@ -87,6 +90,14 @@ class App extends Component {
               exact
               render={() => <Album />}
             />
+            <Route
+              path="/hindi"
+              render={(props) => <HindiLangSong {...props} />}
+            />
+            <Route
+              path="/kannada"
+              render={(props) => <KannadaLangSong {...props} />}
+            />
             {/* {this.routes()} */}
             {
               this.state.loggedIn ?
@@ -102,6 +113,7 @@ class App extends Component {
                   <Route exact path="/login" render={() => <Login />} />
                 </Fragment>
             }
+
             <Redirect to="/" />
           </Switch>
         </Router>

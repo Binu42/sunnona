@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import ShowPlaylists from '../MusicSelect/ShowPlaylists'
-import ShowAlbums from '../MusicSelect/Show'
 import Navbar from '../layout/Navbar'
 import Axios from 'axios';
 import Show from '../MusicSelect/Show';

@@ -32,8 +32,8 @@ main .album-all {
 }
 
 #playlist-songs {
-  max-height: 88%;
-  overflow: scroll;
+  /* max-height: 88%;
+  overflow: scroll; */
   box-sizing: border-box;
 }
 
@@ -189,4 +189,14 @@ main .albums .grid img {
 
 .white_col {
   fill: #fff;
+}
+
+#playlist {
+  max-height: 75%;
+  overflow: scroll;
+}
+
+#playlist-fav {
+  max-height: 70%;
+  overflow: scroll;
 }

@@ -20,6 +20,7 @@ class Navbar extends Component {
       loggedIn
     }
   }
+
   render() {
     let routes, route1;
     if (!this.state.loggedIn) {
@@ -102,16 +103,6 @@ class Navbar extends Component {
                 <NavText>
                   Albums
               </NavText>
-                {/* <NavItem eventKey="charts/linechart">
-              <NavText>
-                Line Chart
-                  </NavText>
-            </NavItem>
-            <NavItem eventKey="charts/barchart">
-              <NavText>
-                Bar Chart
-                  </NavText>
-            </NavItem> */}
               </NavItem>
               <NavItem eventKey="music">
                 <NavIcon>
@@ -129,6 +120,25 @@ class Navbar extends Component {
                   Genre
               </NavText>
               </NavItem>
+              <NavItem eventKey="lang">
+                <NavIcon>
+                  <i className="im im-language"></i>
+                </NavIcon>
+                <NavText>
+                  <span className="text-info">Langauge</span>
+                </NavText>
+                <NavItem eventKey="hindi">
+                  <NavText>
+                    Hindi
+                </NavText>
+                </NavItem>
+                <NavItem eventKey="kannada">
+                  <NavText>
+                    kannada
+                </NavText>
+                </NavItem>
+              </NavItem>
+
               <NavItem eventKey="artist">
                 <NavIcon>
                   {/* <i className="im im-spotify text-success"></i> */}
