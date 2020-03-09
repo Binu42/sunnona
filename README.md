@@ -13,4 +13,4 @@ DBMS project
 ![songs by langauge](8.png)
 ![search](9.png)
 ![Database](10.png)
-![Databse 2](111.png)
+![Databse 2](11.png)
